@@ -1,35 +1,50 @@
 <main>
-  <div>
-    <h1>Controle de abastecimento veicular</h1>
+    <div>
+       <h1>Controle de abastecimento veicular</h1>
+      
+    </div>
+   
+    <div class="content__form">
+      <hr>
+       <form>
+          <label for="tipo-combustivel">Tipo de combustível: </label>
+
+          <select id="tipo-combustivel" name="tipoCombustivel" [(ngModel)]="tipoCombustivel"  (ngModelChange)="limparResultado()">
+            <option value="">Por favor, escolha um tipo</option>
+            <option value="gasolina">Gasolina</option>
+            <option value="etanol">Etanol</option>
+            <option value="diesel">Diesel</option>
+          </select>
+
+          <p>Valor do litro:<br/> <input type="number" name="valor_litro" [(ngModel)]="valor_litro" (ngModelChange)="limparResultado()" ></p>
+
+          <p>Quantidade de litro(s) abastecido:<br/>  <input type="number" name="qtd_abastecido" [(ngModel)]="qtd_abastecido" (ngModelChange)="limparResultado()"></p>
+
+          <p>Data do abastecimento:<br/>  <input type="date" name="dataAbastecimento" [(ngModel)]="dataAbastecimento" (ngModelChange)="limparResultado()"></p>
+
+          <button type="button" (click)="calcularTotal()">Calcular Total</button>
+        </form>
+    </div>
+   
+
+
+  <div *ngIf="resultado" [ngClass]="obterCombustivel()" class="content__resultado">
     <hr>
-  </div>
-  <div>
-    <label for="tipo-combustivel">Tipo de combustível:</label>
-
-    <select [(ngModel)]="tipoCombustivel" name="combustiveis" id="tipo-combustivel">
-      <option value="">Por favor, escolha um tipo</option>
-      <option value="Diesel">Diesel</option>
-      <option value="Etanol">Etanol</option>
-      <option value="Gasolina">Gasolina</option>
-    </select>
-
-    <p>Valor do litro: <input type="number" [(ngModel)] = "valor_litro"></p>
-    <p>Quantidade de litro(s) abastecido: <input type="number" [(ngModel)] = "qtd_abastecido"></p>
-    <p>Data do abastecimento <input type="date" [(ngModel)] = "dataAbastecimento"></p>
-
-  </div>
-
-  <button type="button" (click)="calcularTotal()">Calcular Total</button>
-  <hr>
-
-  @if (total > 0) {
-  <div [ngClass] ="obterCombustivel()">
-    <h3>Abastecimento:</h3>
-    <p>Combustivel: {{ tipoCombustivel }} </p>
+    <h3>Dados do Abastecimento:</h3>
+    
+    @if (tipoCombustivel == 'gasolina'){
+      <p>Combustível: <span class="gasolina">Gasolina</span></p>
+    }@else if (tipoCombustivel == 'etanol'){
+      <p>Combustível: <span class="etanol">Etanol</span></p>
+    }@else{
+      <p>Combustível: <span class="diesel">Dielsel</span></p>
+    }
+    
     <p>Data: {{ dataAbastecimento | date:'dd/MM/yyyy' }}</p>
     <p>Valor por litro: {{ valor_litro | currency:'BRL' }}</p>
-    <p>Quantidade: {{ qtd_abastecido | number:'1.2-2'}} L</p>
-    <p>Total: {{ total | currency: 'BRL' }}</p>
+    <p>Quantidade: {{ qtd_abastecido | number:'1.2-2' }} L</p>
+    
+    <strong>Total: {{ total | currency:'BRL' }}</strong>
   </div>
-}
+  
 </main>
