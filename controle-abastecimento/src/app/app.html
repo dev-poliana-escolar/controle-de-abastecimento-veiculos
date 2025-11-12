@@ -4,15 +4,6 @@
     <hr>
   </div>
   <div>
-    <!-- 
-    
-    - Tipo de combustível (Gasolina, Etanol, Diesel);
-    - Valor do litro;
-    - Quantidade abastecida (litros);
-    - Data do abastecimento.
-    
-    -->
-
     <label for="tipo-combustivel">Tipo de combustível:</label>
 
     <select name="combustiveis" id="tipo-combustivel">
@@ -22,9 +13,16 @@
       <option value="hamster">Gasolina</option>
     </select>
 
-    <p>Valor do litro: <input type="number"></p>
-    <p>Quantidade de litro(s) abastecido: <input type="number"></p>
+    <p>Valor do litro: <input type="number" [(ngModel)] = "valor_litro"></p>
+    <p>Quantidade de litro(s) abastecido: <input type="number" [(ngModel)] = "qtd_abastecido"></p>
     <p>Data do abastecimento <input type="date"></p>
 
+  </div>
+
+  <hr>
+
+  <div>
+    <p>Valor do litro: {{valor_litro | currency:'BRL' }} </p>
+    <p>Quantidade abastecida: {{qtd_abastecido}} </p>
   </div>
 </main>
