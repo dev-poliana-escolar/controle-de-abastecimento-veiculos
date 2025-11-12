@@ -6,23 +6,30 @@
   <div>
     <label for="tipo-combustivel">Tipo de combustível:</label>
 
-    <select name="combustiveis" id="tipo-combustivel">
+    <select [(ngModel)]="tipoCombustivel" name="combustiveis" id="tipo-combustivel">
       <option value="">Por favor, escolha um tipo</option>
-      <option value="dog">Diesel</option>
-      <option value="cat">Etanol</option>
-      <option value="hamster">Gasolina</option>
+      <option value="Diesel">Diesel</option>
+      <option value="Etanol">Etanol</option>
+      <option value="Gasolina">Gasolina</option>
     </select>
 
     <p>Valor do litro: <input type="number" [(ngModel)] = "valor_litro"></p>
     <p>Quantidade de litro(s) abastecido: <input type="number" [(ngModel)] = "qtd_abastecido"></p>
-    <p>Data do abastecimento <input type="date"></p>
+    <p>Data do abastecimento <input type="date" [(ngModel)] = "dataAbastecimento"></p>
 
   </div>
 
+  <button type="button" (click)="calcularTotal()">Calcular Total</button>
   <hr>
 
-  <div>
-    <p>Valor do litro: {{valor_litro | currency:'BRL' }} </p>
-    <p>Quantidade abastecida: {{qtd_abastecido}} </p>
+  @if (total > 0) {
+  <div [ngClass] ="obterCombustivel()">
+    <h3>Abastecimento:</h3>
+    <p>Combustivel: {{ tipoCombustivel }} </p>
+    <p>Data: {{ dataAbastecimento | date:'dd/MM/yyyy' }}</p>
+    <p>Valor por litro: {{ valor_litro | currency:'BRL' }}</p>
+    <p>Quantidade: {{ qtd_abastecido | number:'1.2-2'}} L</p>
+    <p>Total: {{ total | currency: 'BRL' }}</p>
   </div>
+}
 </main>

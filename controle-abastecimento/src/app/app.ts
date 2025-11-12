@@ -10,6 +10,21 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.css'
 })
 export class App {
-  valor_litro : number = 0;
-  qtd_abastecido : number = 0;
+  valor_litro : number = 0
+  qtd_abastecido : number = 0
+  dataAbastecimento: string = '';
+  total: number = 0;
+  tipoCombustivel: string = '';
+  calcularTotal() {
+    this.total = this.valor_litro * this.qtd_abastecido;
+  }
+
+  obterCombustivel() {
+    switch (this.tipoCombustivel) {
+      case 'gasolina': return 'Gasolina';
+      case 'etanol': return 'Etanol';
+      case 'diesel': return 'Diesel';
+      default: return '';
+    }
+  }
 }
