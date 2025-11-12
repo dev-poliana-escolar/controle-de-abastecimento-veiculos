@@ -15,9 +15,28 @@ export class App {
   dataAbastecimento: string = '';
   total: number = 0;
   tipoCombustivel: string = '';
-  calcularTotal() {
-    this.total = this.valor_litro * this.qtd_abastecido;
+  resultado : boolean = false;
+
+
+   validarCampos(): boolean {
+    return (
+      this.valor_litro > 0 &&
+      this.qtd_abastecido > 0 &&
+      this.dataAbastecimento.trim() !== '' &&
+      this.tipoCombustivel.trim() !== ''
+    );
   }
+
+  calcularTotal() {
+    if (this.validarCampos()) {
+      this.total = this.valor_litro * this.qtd_abastecido;
+      this.resultado = true;
+    } else {
+      alert('Preencha todos os campos antes de calcular.');
+      this.resultado = false
+    }
+  }
+
 
   obterCombustivel() {
     switch (this.tipoCombustivel) {
@@ -26,5 +45,9 @@ export class App {
       case 'diesel': return 'Diesel';
       default: return '';
     }
+  }
+
+  limparResultado() {
+    this.resultado=false
   }
 }
