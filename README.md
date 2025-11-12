@@ -43,6 +43,6 @@ Acesse no navegador: http://localhost:4200/
 ![controle-abastece](controle-abastecimento/controle-abastece.gif)
 ### Discentes
 Maria Poliana Pinheiro de Paiva \
-Matheus Eduardo Carneiro da Silva \
+Matheus Eduardo da Silva Carneiro \
 Jackson Marques de Oliveira
 
